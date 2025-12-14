@@ -1,0 +1,30 @@
+server:
+  port: 8088
+
+feign:
+  client:
+    config:
+      address-service:
+        connectTimeout: 3000
+        readTimeout: 3000
+
+logging:
+  level:
+    feign: DEBUG
+    feign.slf4j: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+    org.springframework.cloud.client.loadbalancer: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      addressService:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        permittedNumberOfCallsInHalfOpenState: 5
+        allowHealthIndicatorToFail: true
+        registerHealthIndicator: true
+
+
