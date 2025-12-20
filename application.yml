@@ -7,6 +7,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Make sure port is 8180 (Where Keycloak is running)
+          issuer-uri: http://localhost:8180/realms/university-realm
+
 
 eureka:
   prefer-ip-address: true
